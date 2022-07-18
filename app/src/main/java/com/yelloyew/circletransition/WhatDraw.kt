@@ -73,16 +73,13 @@ class WhatDraw : View {
 
 
         /*
-        * scaleTo is a coefficient based on hypotenuse of legs Axis X and Y divided by radius of element.
-        * Since this is the hypotenuse, this ratio,
-        * regardless of the position of the element being animated,
-        * is guaranteed to cover the entire screen at the end of the animation.
-        * */
-
+        * scaleTo is a coefficient based on hypotenuse of center point divided by radius of element.
+        * This ratio, multiplied by the radius of the original circle, is the radius of the circle covering the entire screen
+        */
         try {
             (sqrt(
-                (containerView.x + containerView.width).toDouble().pow(2.0) +
-                        (containerView.y + containerView.height).toDouble().pow(2.0)
+                (containerCenter.first).toDouble().pow(2.0) +
+                        (containerCenter.second).toDouble().pow(2.0)
             ) / radius)
                 .toFloat()
                 .also { scaleTo ->
